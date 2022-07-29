@@ -1,0 +1,23 @@
+{
+  "name": "westport-handlers",
+  "version": "1.0.0",
+  "description": "Ready to go backend development starter for RAGE multiplayer.",
+  "main": "index.js",
+  "author": "lifesheets <lifesheetst@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "watch": "webpack --mode production --watch --progress"
+  },
+  "dependencies": {
+    "lodash.chunk": "^4.2.0",
+    "mysql": "^2.17.1"
+  },
+  "devDependencies": {
+    "@mysql/xdevapi": "^8.0.18",
+    "@sucrase/webpack-loader": "^2.0.0",
+    "sucrase": "^3.10.1",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.3.10"
+  }
+}

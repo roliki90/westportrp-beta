@@ -1,0 +1,41 @@
+{
+  "name": "westportrp",
+  "version": "1.0.0",
+  "description": "Ready starter server for RAGE 1.1 multiplayer game..",
+  "main": "index.js",
+  "author": "lifesheets <lifesheetst@outlook.com>",
+  "license": "ISC",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --watch packages --watch client_packages --exec \"./ragemp-server.exe\"",
+    "build": "npm run build:handlers && npm run build:interface",
+    "build:interface": "cd interface && npm run build",
+    "build:handlers": "cd handlers && npm run build"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "lerp": "^1.0.3",
+    "mariadb": "^3.0.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^2.3.3",
+    "readline": "^1.3.0",
+    "request": "^2.88.2",
+    "sequelize": "^6.21.3",
+    "types-ragemp": "^0.1.1",
+    "watch": "^0.13.0",
+    "webhook-discord": "^3.7.8",
+    "webpack": "^5.73.0"
+  },
+  "devDependencies": {
+    "@types/ragemp-c": "github:westportrp/ragemp-clientside#v2.0",
+    "@types/ragemp-s": "github:westportrp/ragemp-serverside#v1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/westportrp/gamemode.git"
+  },
+  "homepage": "https://github.com/westportrp/gamemode#readme",
+  "bugs": {
+    "url": "https://github.com/westportrp/gamemode/issues"
+  }
+}
