@@ -1,20 +1,17 @@
 "use strict";
 
-const crypto = require('crypto');
-
+let fs = require('fs/promises');
+let crypto = require('crypto');
 let Container = require('./data');
 let mysql = require('./mysql');
-
 let enums = require('../enums');
 let user = require('../user');
 let coffer = require('../coffer');
-
 let vehicles = require('../property/vehicles');
 let business = require('../property/business');
 let stocks = require('../property/stocks');
 let fraction = require('../property/fraction');
 let family = require('../property/family');
-
 let weather = require('../managers/weather');
 let pickups = require('../managers/pickups');
 
