@@ -61,6 +61,7 @@ let coffer = require('./coffer');
 let inventory = require('./inventory');
 let weapons = require('./weapons');
 let enums = require('./enums');
+let metro = require('./metro');
 
 function init() {
     try {
@@ -138,6 +139,8 @@ function init() {
             vehicles.loadAllFractionVehicles();
             vehicles.checkVehiclesFuel();
         }, 10000);
+
+        metro.init();
     }
     catch (e) {
         methods.debug('ERROR INIT', e);

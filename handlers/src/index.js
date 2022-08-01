@@ -53,6 +53,8 @@ import trucker from "./jobs/trucker";
 import taxi from "./jobs/taxi";
 import prolog from "./manager/prolog";
 
+import "./metro";
+
 try {
 
     user.showLoadDisplay();
