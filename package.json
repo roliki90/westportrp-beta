@@ -26,10 +26,6 @@
     "webhook-discord": "^3.7.8",
     "webpack": "^5.73.0"
   },
-  "devDependencies": {
-    "@types/ragemp-c": "github:westportrp/ragemp-clientside#v2.0",
-    "@types/ragemp-s": "github:westportrp/ragemp-serverside#v1.0"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/westportrp/gamemode.git"
