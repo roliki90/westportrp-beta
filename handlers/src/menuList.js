@@ -3,7 +3,6 @@ import UIMenu from './modules/menu';
 import methods from './modules/methods';
 import ui from './modules/ui';
 import cefMenu from './modules/cefMenu';
-
 import weather from './manager/weather';
 import bind from './manager/bind';
 import heliCam from './manager/heliCam';
@@ -17,7 +16,6 @@ import timer from "./manager/timer";
 import policeRadar from "./manager/policeRadar";
 import prolog from "./manager/prolog";
 import achievement from "./manager/achievement";
-
 import user from './user';
 import admin from './admin';
 import enums from './enums';
@@ -28,7 +26,6 @@ import weapons from './weapons';
 import chat from './chat';
 import shopMenu from './shopMenu';
 //import voice from './voice';
-
 import houses from './property/houses';
 import condos from './property/condos';
 import stocks from './property/stocks';
@@ -37,12 +34,10 @@ import vehicles from "./property/vehicles";
 import yachts from "./property/yachts";
 import fraction from "./property/fraction";
 import family from "./property/family";
-
 import cloth from './business/cloth';
 import vShop from "./business/vShop";
 import fuel from "./business/fuel";
 import tradeMarket from "./business/tradeMarket";
-
 import bus from "./jobs/bus";
 import gr6 from "./jobs/gr6";
 import mail from "./jobs/mail";
@@ -54,6 +49,8 @@ import lamar from "./jobs/lamar";
 import trucker from "./jobs/trucker";
 import taxi from "./jobs/taxi";
 import npc from "./manager/npc";
+
+import charsClothes from "./characters/enums/clothes";
 
 let menuList = {};
 
@@ -4208,12 +4205,12 @@ menuList.showPlayerMenu = function() {
                 let colorId = mp.players.local.getTextureVariation(2);
 
                 if (user.getSex() == 1) {
-                    enums.swtichFemaleHair.forEach((item, idx) => {
+                    charsClothes.female.option.hairs.forEach((item, idx) => {
                         if (item[0] === drawId || item[1] === drawId)
                             allowIdx = idx;
                     });
                     if (allowIdx >= 0) {
-                        let item = enums.swtichFemaleHair[allowIdx];
+                        let item = charsClothes.female.option.hairs[allowIdx];
                         let newDraw = item[1];
                         if (item[1] === drawId) {
                             newDraw = item[0];
@@ -4229,12 +4226,12 @@ menuList.showPlayerMenu = function() {
                     }
                 }
                 else {
-                    enums.swtichMaleHair.forEach((item, idx) => {
+                    charsClothes.male.option.hairs.forEach((item, idx) => {
                         if (item[0] === drawId || item[1] === drawId)
                             allowIdx = idx;
                     });
                     if (allowIdx >= 0) {
-                        let item = enums.swtichMaleHair[allowIdx];
+                        let item = charsClothes.male.option.hairs[allowIdx];
                         let newDraw = item[1];
                         if (item[1] === drawId) {
                             newDraw = item[0];
@@ -8453,41 +8450,40 @@ menuList.showFuelMenu = async function() {
 };
 
 menuList.showBarberShopMoreMenu = async function (title, color, shop, price, name, count, zone, isNone = false) {
-
     let sale = business.getSale(await business.getPrice(shop));
     let list = [];
-    if (isNone)
+    if (isNone) {
         list.push({name: `Убрать`, price: methods.moneyFormat(price / 2), sale: sale, params: {type: 'b:show', id: -1, none: false, name: `${name}`, price: price / 2, zone: zone, shop: shop}});
-
+    }
     if (zone == 'SKIN_HAIR') {
         if (user.getSex() === 1) {
-            enums.hairFemale.forEach((item, i) => {
+            charsClothes.female.hairs.forEach((item, i) => {
                 let desc = '';
-                enums.swtichFemaleHair.forEach(interactive => {
-                    if (item[1] === interactive[0] || item[1] === interactive[1])
+                charsClothes.female.option.hairs.forEach(interactive => {
+                    if (item[1] === interactive[0] || item[1] === interactive[1]) {
                         desc = 'Интерактивная';
+                    }
                 });
-                list.push({name: `${name} #${i + 1}`, price: methods.moneyFormat(price), sale: sale, desc: desc, params: {type: 'b:show', id: item[1], none: isNone, name: `${name} #${i + 1}`, price: price, zone: zone, shop: shop}});
+                list.push({name: `${item[0]} #${i + 1}`, price: methods.moneyFormat(price), sale: sale, desc: desc, params: {type: 'b:show', id: item[1], none: isNone, name: `${name} #${i + 1}`, price: price, zone: zone, shop: shop}});
+            });
+        } else {
+            charsClothes.male.hairs.forEach((item, i) => {
+                let desc = '';
+                charsClothes.male.option.hairs.forEach(interactive => {
+                    if (item[1] === interactive[0] || item[1] === interactive[1]) {
+                        desc = 'Интерактивная';
+                    }
+                });
+                list.push({name: `${item[0]} #${i + 1}`, price: methods.moneyFormat(price), sale: sale, desc: desc, params: {type: 'b:show', id: item[1], none: isNone, name: `${name} #${i + 1}`, price: price, zone: zone, shop: shop}});
             });
         }
-        else {
-            enums.hairMale.forEach((item, i) => {
-                let desc = '';
-                enums.swtichMaleHair.forEach(interactive => {
-                    if (item[1] === interactive[0] || item[1] === interactive[1])
-                        desc = 'Интерактивная';
-                });
-                list.push({name: `${name} #${i + 1}`, price: methods.moneyFormat(price), sale: sale, desc: desc, params: {type: 'b:show', id: item[1], none: isNone, name: `${name} #${i + 1}`, price: price, zone: zone, shop: shop}});
-            });
-        }
-    }
-    else {
-        for (let i = 0; i < count; i++)
+    } else {
+        for (let i = 0; i < count; i++) {
             list.push({name: `${name} #${i + 1}`, price: methods.moneyFormat(price), sale: sale, params: {type: 'b:show', id: i, none: isNone, name: `${name} #${i + 1}`, price: price, zone: zone, shop: shop}});
+        }
     }
-
-    //let pos = new mp.Vector3(mp.players.local.position.x, mp.players.local.position.y, mp.players.local.position.z + 0.75);
-    //shopMenu.showShop2(pos, mp.players.local.getRotation(0).z, 0.8, 0.4, 1.2);
+    // let pos = new mp.Vector3(mp.players.local.position.x, mp.players.local.position.y, mp.players.local.position.z + 0.75);
+    // shopMenu.showShop2(pos, mp.players.local.getRotation(0).z, 0.8, 0.4, 1.2);
     shopMenu.updateShop2(list, title, color, 1, methods.removeQuotesAll(name));
 };
 
