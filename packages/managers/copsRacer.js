@@ -2,13 +2,11 @@ let mysql = require('../modules/mysql');
 let methods = require('../modules/methods');
 let Container = require('../modules/data');
 let chat = require('../modules/chat');
-
 let vSync = require('./vSync');
-
 let user = require('../user');
 let weather = require('./weather');
-
 let vehicles = require('../property/vehicles');
+let {seat} = require('../vehicles/enums/data');
 
 let copsRacer = exports;
 
@@ -329,7 +327,7 @@ copsRacer.playerToLobby = function(player, role = 0) {
             }
 
             if (user.isLogin(player))
-                user.putInVehicle(player, veh, -1);
+                user.putInVehicle(player, veh, seat.driver);
 
         }, new mp.Vector3(spawnPos[0], spawnPos[1], spawnPos[2]), spawnPos[3], currentVehicle);
 

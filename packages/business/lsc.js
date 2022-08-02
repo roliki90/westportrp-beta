@@ -1,15 +1,13 @@
 let methods = require('../modules/methods');
 let mysql = require('../modules/mysql');
 let Container = require('../modules/data');
-
 let user = require('../user');
 let inventory = require('../inventory');
 let enums = require('../enums');
-
 let vSync = require('../managers/vSync');
-
 let vehicles = require('../property/vehicles');
 let business = require('../property/business');
+let {seat} = require('../vehicles/enums/data');
 
 let lsc = exports;
 
@@ -118,13 +116,8 @@ lsc.checkPosForOpenMenu = function(player) {
             let shopPos = new mp.Vector3(item[0], item[1], item[2]);
             if (methods.distanceToPos(playerPos, shopPos) < 3.9) {
                 shopId = methods.parseInt(item[3]);
-
                 try {
-                    /*if (!business.isOpen(shopId)) {
-                        player.notify('~r~К сожалению автосервис сейчас не работает');
-                        return;
-                    }*/
-                    if (player.seat >= 0) {
+                    if (player.seat > seat.driver) {
                         player.notify('~r~Доступно только на водительском');
                         return;
                     }

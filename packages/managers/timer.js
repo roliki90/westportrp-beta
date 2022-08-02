@@ -1,18 +1,15 @@
 let methods = require('../modules/methods');
 let Container = require('../modules/data');
 let mysql = require('../modules/mysql');
-
 let vehicles = require('../property/vehicles');
 let fraction = require('../property/fraction');
 let stocks = require('../property/stocks');
-
 let pickups = require('../managers/pickups');
-
 let bank = require('../business/bank');
-
 let inventory = require('../inventory');
 let user = require('../user');
 let coffer = require('../coffer');
+let {seat} = require('../vehicles/enums/data');
 
 let timer = exports;
 
@@ -403,7 +400,7 @@ timer.sec5Timer = function() {
                     }
                     return;
                 }
-                if (p.seat > 0)
+                if (p.seat > seat.passenger1)
                     return;
                 if (veh.getVariable('fraction_id') === 2 || veh.getVariable('fraction_id') === 3 || veh.getVariable('fraction_id') === 4 || veh.getVariable('fraction_id') === 5 || veh.getVariable('fraction_id') === 6)
                     p.call('client:updateBlips', [JSON.stringify(blips)]);

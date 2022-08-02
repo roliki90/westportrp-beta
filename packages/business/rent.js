@@ -1,12 +1,10 @@
 let methods = require('../modules/methods');
-
 let vSync = require('../managers/vSync');
-
 let user = require('../user');
 let enums = require('../enums');
-
 let vehicles = require('../property/vehicles');
 let business = require('../property/business');
+let {seat} = require('../vehicles/enums/data');
 
 let rent = exports;
 
@@ -215,7 +213,7 @@ rent.buy = function(player, hash, price, shopId, payType) {
 
         if (!user.isLogin(player))
             return;
-        user.putInVehicle(player, veh, -1);
+        user.putInVehicle(player, veh, seat.driver);
 
     }, player.position, player.heading, hash);
 

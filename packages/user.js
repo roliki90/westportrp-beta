@@ -3,18 +3,15 @@ let methods = require('./modules/methods');
 let Container = require('./modules/data');
 let chat = require('./modules/chat');
 let ctos = require('./modules/ctos');
-
 let enums = require('./enums');
 let coffer = require('./coffer');
 let inventory = require('./inventory');
 let admin = require('./admin');
-
 let wpSync = require('./managers/wpSync');
 let weather = require('./managers/weather');
 let discord = require('./managers/discord');
 let gangWar = require('./managers/gangWar');
 let canabisWar = require('./managers/canabisWar');
-
 let vehicles = require('./property/vehicles');
 let houses = require('./property/houses');
 let condos = require('./property/condos');
@@ -22,6 +19,8 @@ let fraction = require('./property/fraction');
 let family = require('./property/family');
 let stocks = require('./property/stocks');
 let yachts = require('./property/yachts');
+let {seat} = require('./vehicles/enums/data');
+
 
 let user = exports;
 
@@ -2009,7 +2008,7 @@ user.getVehicleDriver = function(vehicle) {
     if (!mp.vehicles.exists(vehicle))
         return driver;
     vehicle.getOccupants().forEach((p) => {
-        if (p.seat == -1)
+        if (p.seat == seat.driver)
             driver = p;
     });
     return driver;

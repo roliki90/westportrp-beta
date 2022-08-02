@@ -1,11 +1,9 @@
 let user = require('../user');
-
 let weather = require('./weather');
 let vSync = require('./vSync');
-
 let methods = require('../modules/methods');
-
 let vehicles = require('../property/vehicles');
+let {seat} = require('../vehicles/enums/data');
 
 let racer = exports;
 
@@ -6499,7 +6497,7 @@ racer.startRace = function () {
                             }
 
                             if (user.isLogin(p))
-                                user.putInVehicle(p, veh, -1);
+                                user.putInVehicle(p, veh, seat.driver);
 
                         }, spawnPos, spawnRot, currentVehicle);
                     }, 1000);
