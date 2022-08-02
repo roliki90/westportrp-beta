@@ -413,6 +413,10 @@ mp.events.add("playerExitVehicle", function (player, vehicle) {
     setTimeout(function () {
     if (vehicles.exists(vehicle))
         vSync.setEngineState(vehicle, vSync.getEngineState(vehicle));
+        let data = vSync.getVehicleSyncData(vehicle);
+        if(data.SirenState) {
+            vSync.setSirenState(vehicle, true);
+        }
     }, 1500);
 
     try {
