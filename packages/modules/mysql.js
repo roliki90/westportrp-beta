@@ -18,7 +18,9 @@ const pool = mysql2.createPool({
     database: 'lifesheets_default',
     port: 3306,
     waitForConnections: true,
-    connectionLimit: 500,
+    connectTimeout: 15000,
+    acquireTimeout: 15000,
+    connectionLimit: 100,
     queueLimit: 0,
     timeout: 600000
 });
